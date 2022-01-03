@@ -3,7 +3,6 @@ from tkinter import ttk
 import water_heating
 import graph_temp
 from tkinter import messagebox as mb
-import fire_animation
 from PIL import ImageTk, Image
 
 BLUE = '#87CEEB'
