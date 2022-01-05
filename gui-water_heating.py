@@ -36,18 +36,9 @@ def result(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
 
 
 def show_result(canvas, item1, item2, item3, time, start_temp):
-    text = f'''Время кипения воды {"%.2f" % time} мин.
-Нарисовать график зависимости температуры от времени?'''
-
-    answer = mb.askyesno(
-                title='Результат',
-                message=text
-                )
-    if answer:
-        graph_temp.make_graph(start_temp, 100, time)
-
     canvas.delete(item1, item2, item3)
-    canvas.create_text(220, 40, text=f'Время кипения воды: \n \n {"%.2f" % time} мин', justify=tk.CENTER, font=FONT_ENTRY)
+    canvas.create_text(220, 40, text=f'Время кипения воды: \n \n {"%.2f" % time} мин',
+                       justify=tk.CENTER, font=FONT_ENTRY)
 
 
 def show_graph(start_temp, time):
