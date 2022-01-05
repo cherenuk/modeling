@@ -1,19 +1,6 @@
-# boiler_index = int(input(material_text))
-    # boiler_mass = int(input(mass_text))
-    #
-    # start_temp = int(input(temp_text))
-    #
-    # burner_power = int(input(burner_text))
-    #
-    # water_volume = int(input(volume_text))
-
-
 def convert_volume(volume):
     right_volume = volume / 1000
     return right_volume
-
-
-# [920, 500, 540, 530]
 
 
 boilers_conductivity = {
@@ -43,7 +30,6 @@ volume_text = 'Объем воды(л): '
 
 
 def main(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
-    print(title)
 
     boiler_conductivity = boilers_conductivity[boiler_index]
 

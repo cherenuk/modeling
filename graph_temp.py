@@ -1,16 +1,11 @@
 import matplotlib.pyplot as plot
-import numpy as np
+
 
 BLUE = '#000099'
 
 
 def make_graph(y1, y2, x2):
     x1 = 0
-    # y1 = 20
-    # x2 = 50
-    # y2 = 100
-    # x3 = 70
-    # y3 = 100
     x = [x1, x2]
     y = [y1, y2]
     plot.plot(x, y, BLUE)

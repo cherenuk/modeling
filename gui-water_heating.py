@@ -8,8 +8,6 @@ from PIL import ImageTk, Image
 BLUE = '#87CEEB'
 DARK_BLUE = '#58C0EC'
 
-# W_PAST = 280
-# animation = mainmenu.add_command(label='Анимация', command=lambda : fire_animation.main(window))
 
 W = 700
 H = 517
