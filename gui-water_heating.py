@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 import water_heating
 import graph_temp
-from tkinter import messagebox as mb
 from PIL import ImageTk, Image
 
 BLUE = '#87CEEB'
@@ -22,7 +21,7 @@ title = 'Калькулятор расчета времени кипения в�
 ready_text = 'ᐅ  Нажмите готово для получения результата'
 graph_text = 'ᐅ  График, чтобы увидеть зависимость температуры \n от времени'
 extra_text = 'ᐅ  В верхнем меню есть дополнительная информация'
-test_text='---------------------------------------------------------------------------'
+test_text = '---------------------------------------------------------------------------'
 
 
 def enter_color(event, but):
@@ -39,9 +38,9 @@ def result(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
 
 
 def show_result(canvas, item1, item2, item3, time, start_temp):
-    canvas.delete(item1, item2, item3)
+    canvas.delete(item1, item2, item3, 'past_result')
     canvas.create_text(220, 110, text=f'Время кипения воды: \n \n ➤{"%.2f" % time} мин',
-                       justify=tk.CENTER, font=FONT_RESULT)
+                       justify=tk.CENTER, font=FONT_RESULT, tag='past_result')
 
 
 def show_graph(start_temp, time):
@@ -61,7 +60,11 @@ def main():
     window.config(menu=mainmenu)
     author = mainmenu.add_command(label='Об авторе')
     program = mainmenu.add_command(label='О программе')
-    reference = mainmenu.add_command(label='Справочные данные')
+    reference = tk.Menu(mainmenu, tearoff=0)
+    mainmenu.add_cascade(label='Справочные данные', menu=reference)
+    reference.add_command(label='Табличные значения')
+    reference.add_command(label='Формулы')
+    reference.add_command(label='Газовая горелка?')
 
     figure = tk.Canvas(window, bg='white', bd=3, highlightthickness=1, relief='ridge')
     figure.place(x=0, y=0, relx=0, rely=0, width=W_FIGURE, height=H-20)
@@ -104,9 +107,9 @@ def main():
     ready.bind('<Enter>', lambda e: enter_color(e, ready))
     ready.bind('<Leave>', lambda e: leave_color(e, ready))
     ready['command'] = lambda : show_result(figure, ready_look, graph_look, extra_look,
-                                            result(material_list.get(), int(mass.get()),
-                                                   int(temp.get()), int(power.get()),
-                                                   int(volume.get())), int(temp.get()))
+                                            result(material_list.get(), float(mass.get()),
+                                                   float(temp.get()), float(power.get()),
+                                                   float(volume.get())), float(temp.get()))
 
     ready.grid(row=10, column=0, padx=10, sticky=tk.SE)
 
@@ -114,9 +117,9 @@ def main():
                       relief='raised', borderwidth=3)
     graph_but.bind('<Enter>', lambda e: enter_color(e, graph_but))
     graph_but.bind('<Leave>', lambda e: leave_color(e, graph_but))
-    graph_but['command'] = lambda: show_graph(int(temp.get()), result(material_list.get(), int(mass.get()),
-                                                                      int(temp.get()), int(power.get()),
-                                                                      int(volume.get())))
+    graph_but['command'] = lambda: show_graph(int(temp.get()), result(material_list.get(), float(mass.get()),
+                                                                      float(temp.get()), float(power.get()),
+                                                                      float(volume.get())))
     graph_but.grid(row=11, column=0, padx=10, pady=10, sticky=tk.SE)
 
     window.columnconfigure(0, weight=1)
