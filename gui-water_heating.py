@@ -4,9 +4,9 @@ import water_heating
 import graph_temp
 from PIL import ImageTk, Image
 
+
 BLUE = '#87CEEB'
 DARK_BLUE = '#58C0EC'
-
 
 W = 700
 H = 517
@@ -37,7 +37,7 @@ def result(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
     return time
 
 
-def show_result(canvas, item1, item2, item3, time, start_temp):
+def show_result(canvas, item1, item2, item3, time):
     canvas.delete(item1, item2, item3, 'past_result')
     canvas.create_text(220, 110, text=f'Время кипения воды: \n \n ➤{"%.2f" % time} мин',
                        justify=tk.CENTER, font=FONT_RESULT, tag='past_result')
@@ -79,7 +79,7 @@ def main():
     material.grid(row=0, column=0, pady=10, padx=20, sticky=tk.E)
 
     material_list = ttk.Combobox(width=20, font=FONT,
-                                values = water_heating.materials)
+                                 values=water_heating.materials)
     material_list.grid(row=1, column=0, padx=15, sticky=tk.E)
 
     mass_text = tk.Label(font=FONT, text='Масса котелка/чайника(кг):')
@@ -106,15 +106,15 @@ def main():
                       relief='raised', borderwidth=3)
     ready.bind('<Enter>', lambda e: enter_color(e, ready))
     ready.bind('<Leave>', lambda e: leave_color(e, ready))
-    ready['command'] = lambda : show_result(figure, ready_look, graph_look, extra_look,
-                                            result(material_list.get(), float(mass.get()),
+    ready['command'] = lambda: show_result(figure, ready_look, graph_look, extra_look,
+                                           result(material_list.get(), float(mass.get()),
                                                    float(temp.get()), float(power.get()),
-                                                   float(volume.get())), float(temp.get()))
+                                                   float(volume.get())))
 
     ready.grid(row=10, column=0, padx=10, sticky=tk.SE)
 
     graph_but = tk.Button(text='График', bg=BLUE, width=30, height=2,
-                      relief='raised', borderwidth=3)
+                          relief='raised', borderwidth=3)
     graph_but.bind('<Enter>', lambda e: enter_color(e, graph_but))
     graph_but.bind('<Leave>', lambda e: leave_color(e, graph_but))
     graph_but['command'] = lambda: show_graph(int(temp.get()), result(material_list.get(), float(mass.get()),
@@ -130,4 +130,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
