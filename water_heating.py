@@ -48,9 +48,3 @@ def main(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
 
 if __name__ == '__main__':
     main(1, 1, 1, 1, 1)
-
-
-
-
-
-

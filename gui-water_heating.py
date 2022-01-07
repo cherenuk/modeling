@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox as mb
 import water_heating
 import graph_temp
 from PIL import ImageTk, Image
@@ -33,18 +34,40 @@ def leave_color(event, but):
 
 
 def result(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
-    time = water_heating.main(boiler_index, boiler_mass, start_temp, burner_power, water_volume)
+    results = [boiler_mass, start_temp, burner_power, water_volume]
+
+    try:
+        boiler_index, boiler_mass, start_temp, burner_power, water_volume = boiler_index, \
+                                                                            float(boiler_mass), \
+                                                                            float(start_temp), \
+                                                                            float(burner_power), \
+                                                                            float(water_volume)
+        time = water_heating.main(boiler_index, boiler_mass, start_temp, burner_power, water_volume)
+    except:
+        time = 'error'
+
+    if time != 'error':
+        for i in results:
+            if float(i) <= 0:
+                time = 'error'
+    if time == 'error':
+        mb.showerror(
+            'Ошибка',
+            'Проверьте:\n\n1)Заполнены ли все значения.\n2)Все ли значения положительны')
+
     return time
 
 
 def show_result(canvas, item1, item2, item3, time):
-    canvas.delete(item1, item2, item3, 'past_result')
-    canvas.create_text(220, 110, text=f'Время кипения воды: \n \n ➤{"%.2f" % time} мин',
-                       justify=tk.CENTER, font=FONT_RESULT, tag='past_result')
+    if time != 'error':
+        canvas.delete(item1, item2, item3, 'past_result')
+        canvas.create_text(220, 110, text=f'Время кипения воды: \n \n ➤{"%.2f" % time} мин',
+                           justify=tk.CENTER, font=FONT_RESULT, tag='past_result')
 
 
 def show_graph(start_temp, time):
-    graph_temp.make_graph(start_temp, 100, time)
+    if time != 'error':
+        graph_temp.make_graph(start_temp, 100, time)
 
 
 def main():
@@ -107,9 +130,9 @@ def main():
     ready.bind('<Enter>', lambda e: enter_color(e, ready))
     ready.bind('<Leave>', lambda e: leave_color(e, ready))
     ready['command'] = lambda: show_result(figure, ready_look, graph_look, extra_look,
-                                           result(material_list.get(), float(mass.get()),
-                                                   float(temp.get()), float(power.get()),
-                                                   float(volume.get())))
+                                           result(material_list.get(), mass.get(),
+                                                   temp.get(), power.get(),
+                                                   volume.get()))
 
     ready.grid(row=10, column=0, padx=10, sticky=tk.SE)
 
@@ -117,9 +140,9 @@ def main():
                           relief='raised', borderwidth=3)
     graph_but.bind('<Enter>', lambda e: enter_color(e, graph_but))
     graph_but.bind('<Leave>', lambda e: leave_color(e, graph_but))
-    graph_but['command'] = lambda: show_graph(int(temp.get()), result(material_list.get(), float(mass.get()),
-                                                                      float(temp.get()), float(power.get()),
-                                                                      float(volume.get())))
+    graph_but['command'] = lambda: show_graph(int(temp.get()), result(material_list.get(), mass.get(),
+                                                                      temp.get(), power.get(),
+                                                                      volume.get()))
     graph_but.grid(row=11, column=0, padx=10, pady=10, sticky=tk.SE)
 
     window.columnconfigure(0, weight=1)
