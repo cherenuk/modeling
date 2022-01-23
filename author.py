@@ -7,7 +7,7 @@ def main(root):
     window.geometry('650x300+400+100')
     window.resizable(width=False, height=False)
     window.title('Автор')
-    photo = ImageTk.PhotoImage(Image.open('images/1.ico'))
+    photo = ImageTk.PhotoImage(Image.open('images/author_logo.ico'))
     window.iconphoto(False, photo)
 
     info = ImageTk.PhotoImage(Image.open('images/author1.png'))
