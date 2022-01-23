@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox as mb
 import water_heating
 import graph_temp
+import author
 from PIL import ImageTk, Image
 
 
@@ -22,7 +23,7 @@ title = 'Калькулятор расчета времени кипения в�
 ready_text = 'ᐅ  Нажмите готово для получения результата'
 graph_text = 'ᐅ  График, чтобы увидеть зависимость температуры \n от времени'
 extra_text = 'ᐅ  В верхнем меню есть дополнительная информация'
-test_text = '---------------------------------------------------------------------------'
+test_text = '———————————————————————————————————————————————————————————————————————————————'
 
 
 def enter_color(event, but):
@@ -81,7 +82,7 @@ def main():
 
     mainmenu = tk.Menu(window)
     window.config(menu=mainmenu)
-    author = mainmenu.add_command(label='Об авторе')
+    author_menu = mainmenu.add_command(label='Об авторе', command=lambda: author.main(window))
     program = mainmenu.add_command(label='О программе')
     reference = tk.Menu(mainmenu, tearoff=0)
     mainmenu.add_cascade(label='Справочные данные', menu=reference)
