@@ -4,6 +4,7 @@ from tkinter import messagebox as mb
 import water_heating
 import graph_temp
 import author
+import program_info
 from PIL import ImageTk, Image
 
 
@@ -83,7 +84,7 @@ def main():
     mainmenu = tk.Menu(window)
     window.config(menu=mainmenu)
     author_menu = mainmenu.add_command(label='Об авторе', command=lambda: author.main(window))
-    program = mainmenu.add_command(label='О программе')
+    program = mainmenu.add_command(label='О программе', command=lambda: program_info.main(window))
     reference = tk.Menu(mainmenu, tearoff=0)
     mainmenu.add_cascade(label='Справочные данные', menu=reference)
     reference.add_command(label='Табличные значения')
