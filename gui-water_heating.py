@@ -5,6 +5,7 @@ import water_heating
 import graph_temp
 import author
 import program_info
+import const_info
 from PIL import ImageTk, Image
 
 
@@ -87,7 +88,7 @@ def main():
     program = mainmenu.add_command(label='О программе', command=lambda: program_info.main(window))
     reference = tk.Menu(mainmenu, tearoff=0)
     mainmenu.add_cascade(label='Справочные данные', menu=reference)
-    reference.add_command(label='Табличные значения')
+    reference.add_command(label='Табличные значения', command=lambda: const_info.main(window))
     reference.add_command(label='Формулы')
     reference.add_command(label='Газовая горелка?')
 
