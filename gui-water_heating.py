@@ -6,6 +6,7 @@ import graph_temp
 import author
 import program_info
 import const_info
+import formula_info
 from PIL import ImageTk, Image
 
 
@@ -89,7 +90,7 @@ def main():
     reference = tk.Menu(mainmenu, tearoff=0)
     mainmenu.add_cascade(label='Справочные данные', menu=reference)
     reference.add_command(label='Табличные значения', command=lambda: const_info.main(window))
-    reference.add_command(label='Формулы')
+    reference.add_command(label='Формула', command=lambda: formula_info.main(window))
     reference.add_command(label='Газовая горелка?')
 
     figure = tk.Canvas(window, bg='white', bd=3, highlightthickness=1, relief='ridge')
