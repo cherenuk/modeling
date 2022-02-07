@@ -10,15 +10,6 @@ boilers_conductivity = {
                         'Титан': 530
                         }
 
-title = '---- Кипение воды на газовой горелке ----'
-material_text = '''
-Из какого материала сделан котелок/чайник:
-1)Алюминий
-2)Сталь
-3)Чугун
-4)Титан
-'''
-materials = ['Алюминий', 'Сталь', 'Чугун', 'Титан']
 
 mass_text = 'Масса котелка/чайника(кг): '
 
@@ -44,7 +35,3 @@ def main(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
     time = (useful_heat / (burner_power*1000)) / 60
 
     return time
-
-
-if __name__ == '__main__':
-    main(1, 1, 1, 1, 1)

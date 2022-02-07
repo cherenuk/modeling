@@ -91,7 +91,6 @@ def main():
     mainmenu.add_cascade(label='Справочные данные', menu=reference)
     reference.add_command(label='Табличные значения', command=lambda: const_info.main(window))
     reference.add_command(label='Формула', command=lambda: formula_info.main(window))
-    reference.add_command(label='Газовая горелка?')
 
     figure = tk.Canvas(window, bg='white', bd=3, highlightthickness=1, relief='ridge')
     figure.place(x=0, y=0, relx=0, rely=0, width=W_FIGURE, height=H-20)
@@ -135,7 +134,7 @@ def main():
     ready.bind('<Leave>', lambda e: leave_color(e, ready))
     ready['command'] = lambda: show_result(figure, ready_look, graph_look, extra_look,
                                            result(material_list.get(), mass.get(),
-                                                   temp.get(), power.get(),
+                                                temp.get(), power.get(),
                                                    volume.get()))
 
     ready.grid(row=10, column=0, padx=10, sticky=tk.SE)

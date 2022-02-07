@@ -21,7 +21,3 @@ def show():
     plot.ylabel('t, C°')
     plot.legend()
     plot.show()
-
-
-if __name__ == '__main__':
-    make_graph(20, 100, 50)

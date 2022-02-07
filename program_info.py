@@ -4,7 +4,7 @@ from PIL import ImageTk, Image
 
 def main(root):
     window = tk.Toplevel(root)
-    window.geometry('550x510+400+100')
+    window.geometry('530x510+400+100')
     window.resizable(width=False, height=False)
     window.title('О программе')
     photo = ImageTk.PhotoImage(Image.open('images/program_logo.ico'))

@@ -4,7 +4,7 @@ from PIL import ImageTk, Image
 
 def main(root):
     window = tk.Toplevel(root)
-    window.geometry('1060x420+200+100')
+    window.geometry('1050x420+200+100')
     window.resizable(width=False, height=False)
     window.title('Табличные значения')
     photo = ImageTk.PhotoImage(Image.open('images/const_logo.ico'))
