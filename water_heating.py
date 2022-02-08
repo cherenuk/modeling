@@ -13,15 +13,6 @@ boilers_conductivity = {
                         }
 
 
-mass_text = 'Масса котелка/чайника(кг): '
-
-temp_text = 'Начальная температура воды или котла/чайника(C°): '
-
-burner_text = 'Мощность горелки(кВт): '
-
-volume_text = 'Объем воды(л): '
-
-
 def main(boiler_index, boiler_mass, start_temp, burner_power, water_volume):
 
     boiler_conductivity = boilers_conductivity[boiler_index]
