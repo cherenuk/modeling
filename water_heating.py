@@ -3,6 +3,8 @@ def convert_volume(volume):
     return right_volume
 
 
+materials = ['Алюминий', 'Сталь', 'Чугун', 'Титан']
+
 boilers_conductivity = {
                         'Алюминий': 920,
                         'Сталь': 500,
